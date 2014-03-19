@@ -58,7 +58,13 @@ angular.module 'validator.directive', ['validator.provider']
                             rule.error model(scope), scope, element, attrs, $injector if rule.enableError
                             if args.error?() is 1
                                 # scroll to the first element
-                                try element[0].scrollIntoViewIfNeeded()
+                                # try element[0].scrollIntoViewIfNeeded()
+
+                                # Edit by Huei; scroll to element when error
+                                scrollElement = jQuery(element)
+                                jQuery("html, body").stop().animate
+                                  scrollTop: scrollElement.offset().top - 300, 1000, "swing"
+
                                 element[0].select()
 
         registerRequired = ->

@@ -67,13 +67,15 @@
                     return increaseSuccessCount();
                   },
                   error: function() {
+                    var scrollElement;
                     if (rule.enableError) {
                       rule.error(model(scope), scope, element, attrs, $injector);
                     }
                     if ((typeof args.error === "function" ? args.error() : void 0) === 1) {
-                      try {
-                        element[0].scrollIntoViewIfNeeded();
-                      } catch (_error) {}
+                      scrollElement = jQuery(element);
+                      jQuery("html, body").stop().animate({
+                        scrollTop: scrollElement.offset().top - 300
+                      }, 1000, "swing");
                       return element[0].select();
                     }
                   }
