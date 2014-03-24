@@ -60,8 +60,14 @@ angular.module 'validator.directive', ['validator.provider']
                                 # scroll to the first element
                                 # try element[0].scrollIntoViewIfNeeded()
 
-                                # Edit by Huei; scroll to element when error
+                                # Edit by Huei
+                                # scroll to element when error
+                                # If the element is redactor, set to parent
                                 scrollElement = jQuery(element)
+
+                                if attrs.apRedactor
+                                  scrollElement = scrollElement.parent();
+
                                 jQuery("html, body").stop().animate
                                   scrollTop: scrollElement.offset().top - 300, 1000, "swing"
 

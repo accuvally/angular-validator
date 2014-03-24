@@ -73,6 +73,9 @@
                     }
                     if ((typeof args.error === "function" ? args.error() : void 0) === 1) {
                       scrollElement = jQuery(element);
+                      if (attrs.apRedactor) {
+                        scrollElement = scrollElement.parent();
+                      }
                       jQuery("html, body").stop().animate({
                         scrollTop: scrollElement.offset().top - 300
                       }, 1000, "swing");
