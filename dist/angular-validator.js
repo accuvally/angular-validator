@@ -134,7 +134,7 @@
               rules.push(rule);
               return;
             }
-            match = value.match(/^\[(.*)\]$/);
+            match = value.match(/^\[(.+)\]$/);
             if (match) {
               ruleNames = match[1].split(',');
               _results = [];
@@ -251,6 +251,7 @@
                 rule.enableError = false;
               }
             }
+            return ctrl.$setValidity(attrs.ngModel, true);
           });
           scope.$watch(attrs.ngModel, function(newValue, oldValue) {
             if (newValue === oldValue) {
@@ -457,7 +458,7 @@
       @return rule / null
        */
       if (this.rules[name]) {
-        return this.rules[name];
+        return angular.copy(this.rules[name]);
       } else {
         return null;
       }

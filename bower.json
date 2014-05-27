@@ -1,6 +1,6 @@
 {
   "name": "angular-validator",
-  "version": "0.1.4",
+  "version": "0.2.2",
   "main": [
     "./dist/angular-validator.js",
     "./dist/angular-validator-rules.js"
@@ -21,7 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.15",
-    "angular-mocks": "~1.2.15"
+    "angular": "1.2.16",
+    "angular-mocks": "1.2.16"
   }
 }

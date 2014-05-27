@@ -113,7 +113,7 @@ angular.module 'validator.directive', ['validator.provider']
                 return
 
             # validat by rules
-            match = value.match /^\[(.*)\]$/
+            match = value.match /^\[(.+)\]$/
             if match
                 ruleNames = match[1].split ','
                 for name in ruleNames
@@ -198,7 +198,7 @@ angular.module 'validator.directive', ['validator.provider']
             for rule in rules
                 rule.success model(scope), scope, element, attrs, $injector
                 rule.enableError = no if rule.invoke isnt 'watch'
-            return
+            ctrl.$setValidity attrs.ngModel, yes
 
         # ----------------------------------------
         # watch
