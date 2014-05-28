@@ -32,12 +32,13 @@ angular.module 'validator.directive', ['validator.provider']
             successCount = 0
             errorCount = 0
             increaseSuccessCount = ->
-                if ++successCount is rules.length
+                if ++successCount >= rules.length
                     ctrl.$setValidity attrs.ngModel, yes
                     rule.success model(scope), scope, element, attrs, $injector for rule in rules
                     args.success?()
                 return
 
+            return increaseSuccessCount() if rules.length is 0
             for rule in rules
                 switch from
                     when 'blur'
@@ -76,6 +77,7 @@ angular.module 'validator.directive', ['validator.provider']
                                   scrollTop: scrollElement.offset().top - 300, 1000, "swing"
 
                                 element[0].select()
+            return
 
         registerRequired = ->
             rule = $validator.getRule 'required'
