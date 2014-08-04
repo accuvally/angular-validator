@@ -9,9 +9,10 @@
         restrict: 'A',
         require: 'ngModel',
         link: function(scope, element, attrs, ctrl) {
-          var $parse, $validator, isAcceptTheBroadcast, model, observerRequired, registerRequired, removeRule, rules, validate;
+          var $parse, $timeout, $validator, isAcceptTheBroadcast, model, observerRequired, registerRequired, removeRule, rules, validate;
           $validator = $injector.get('$validator');
           $parse = $injector.get('$parse');
+          $timeout = $injector.get('$timeout');
           model = $parse(attrs.ngModel);
           rules = [];
           validate = function(from, args) {
@@ -264,7 +265,7 @@
             });
           });
           return $(element).bind('blur', function() {
-            return scope.$apply(function() {
+            return $timeout(function() {
               return validate('blur');
             });
           });

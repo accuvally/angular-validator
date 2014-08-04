@@ -10,6 +10,7 @@ angular.module 'validator.directive', ['validator.provider']
         # ----------------------------------------
         $validator = $injector.get '$validator'
         $parse = $injector.get '$parse'
+        $timeout = $injector.get '$timeout'
 
         # ----------------------------------------
         # valuables
@@ -213,5 +214,5 @@ angular.module 'validator.directive', ['validator.provider']
         # blur
         # ----------------------------------------
         $(element).bind 'blur', ->
-            scope.$apply -> validate 'blur'
+            $timeout -> validate 'blur'
 ]
